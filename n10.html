@@ -110,10 +110,64 @@
             margin-left: 10px;
         }
 
-
-
-
-
+        /* Telegram bots section styling */
+        .telegram-bots-section {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 25px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .telegram-bots-section h2 {
+            color: var(--dark);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .telegram-bots-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .telegram-bot-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa, #e4e8f0);
+            border-radius: 10px;
+            width: 280px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .telegram-bot-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .telegram-bot-card i {
+            font-size: 2.5rem;
+            color: #0088cc; /* Telegram blue */
+            margin-bottom: 15px;
+        }
+        
+        .telegram-bot-card h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .telegram-bot-card p {
+            color: #666;
+            text-align: center;
+            font-size: 0.9rem;
+        }
      
         
         @media (max-width: 768px) {
@@ -131,6 +185,16 @@
             .nav-button {
                 width: 100%;
                 max-width: 300px;
+            }
+            
+            .telegram-bots-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .telegram-bot-card {
+                width: 100%;
+                max-width: 280px;
             }
         }
     </style>
@@ -153,12 +217,29 @@
         </div>
     </div>
 
-
-
-    
-    
-
-
+    <!-- Telegram Bots Section -->
+    <div class="telegram-bots-section">
+        <h2>Пайдалы Telegram боттар</h2>
+        <div class="telegram-bots-container">
+            <a href="https://t.me/salestats_bot" class="telegram-bot-card" target="_blank">
+                <i class="fab fa-telegram"></i>
+                <h3>@salestats_bot</h3>
+                <p>Сатылым статистикасын талдау боты</p>
+            </a>
+            
+            <a href="https://t.me/kaspitesting_bot" class="telegram-bot-card" target="_blank">
+                <i class="fab fa-telegram"></i>
+                <h3>@kaspitesting_bot</h3>
+                <p>Kaspi тестілеу боты</p>
+            </a>
+            
+            <a href="https://t.me/KaspiAnalyticBot" class="telegram-bot-card" target="_blank">
+                <i class="fab fa-telegram"></i>
+                <h3>@KaspiAnalyticBot</h3>
+                <p>Kaspi аналитика боты</p>
+            </a>
+        </div>
+    </div>
 
     <div class="navigation-buttons">
         <a href="index.html" class="nav-button back-button">
@@ -183,4 +264,3 @@
     </script>
 </body>
 </html>
-
