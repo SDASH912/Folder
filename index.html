@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="kz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaspi Курстары</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF5722;
+            --secondary: #FFAB91;
+            --dark: #2D3142;
+            --light: #FFF8F0;
+            --accent: #FF3D00;
+            --gradient-1: linear-gradient(135deg, #FF5722, #FF9800);
+            --gradient-2: linear-gradient(135deg, #FF3D00, #FF8A65);
+            --card-shadow: 0 10px 30px rgba(255, 87, 34, 0.1);
+            --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            color: white;
+            padding: 3.5rem 0 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(255, 87, 34, 0.2);
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            background: var(--primary);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 5;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        header h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            text-shadow: var(--text-shadow);
+            letter-spacing: -0.5px;
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        #fluid-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 87, 34, 0.3);
+            z-index: 2;
+        }
+        
+        .header-shapes {
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSI2MHB4IiB2aWV3Qm94PSIwIDAgMTI4MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0iI0ZGRjhGMCI+PHBhdGggZD0iTTEyODAgMy40QzEwNTAuNTkgMTggMTAxOS40IDg0Ljg5IDczNC40MiA4NC44OWMtMzIwIDAtMzIwLTg0LjMtNjQwLTg0LjNDNTkuNC41OSAyOC4yIDEuNiAwIDMuNFYxNDBoMTI4MHoiIGZpbGwtb3BhY2l0eT0iLjMiLz48cGF0aCBkPSJNMCAyNC4zMWM0My40Ni01LjY5IDk0LjU2LTkuMjUgMTU4LjQyLTkuMjUgMzIwIDAgMzIwIDg5LjI0IDY0MCA4OS4yNCAyNTYuMTMgMCAzMDcuMjgtNTcuMTYgNDgxLjU4LTgwVjE0MEgweiIgZmlsbC1vcGFjaXR5PSIuNSIvPjxwYXRoIGQ9Ik0xMjgwIDUxLjc2Yy0yMDEgMTIuNDktMjQyLjQzIDUzLjQtNTEzLjU4IDUzLjQtMzIwIDAtMzIwLTU3LTY0MC01Ny00OC44NS4wMS05MC4yMSAxLjM1LTEyNi40MiAzLjZWMTQwaDEyODB6Ii8+PC9nPjwvc3ZnPg==');
+            background-size: 100% 60px;
+            z-index: 3;
+        }
+        
+        nav {
+            background-color: white;
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;            
+            justify-content: center;
+            flex-wrap: nowrap;
+            gap: 0.5rem;
+            padding: 0 1rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            white-space: nowrap;
+        }
+        
+        nav a:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--gradient-1);
+            z-index: -1;
+            transition: width 0.3s ease;
+            border-radius: 50px;
+        }
+        
+        nav a:hover {
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        nav a:hover:before {
+            width: 100%;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .module-card {
+            background: white;
+            border-radius: 24px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 87, 34, 0.05);
+            transform: translateY(0);
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 87, 34, 0.15);
+        }
+        
+        .module-header {
+            background: linear-gradient(to right, var(--secondary), #FFF8F0);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 87, 34, 0.05);
+        }
+        
+        .module-header:hover {
+            background: var(--gradient-1);
+            color: white;
+        }
+        
+        .module-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .module-header i {
+            font-size: 1.3rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+        
+        .module-header .toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.4s ease;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .module-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 1.8rem;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .module-content.active {
+            max-height: 800px;
+            padding: 1.5rem;
+        }
+        
+        .module-content ul {
+            list-style-type: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+        
+        .module-content li {
+            background-color: var(--light);
+            padding: 1.2rem;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(255, 87, 34, 0.05);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .module-content li:before {
+            content: "";
+            min-width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+        
+        .module-content li:hover {
+            background: linear-gradient(135deg, var(--light), var(--secondary));
+            transform: translateX(8px);
+            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.1);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: var(--gradient-1);
+        }
+        
+        .icon-rotate {
+            transform: rotate(180deg);
+        }
+        
+        .module-card.active {
+            box-shadow: 0 15px 40px rgba(255, 87, 34, 0.15);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .new-item {
+            position: relative;
+        }
+        
+        .new-item:after {
+            content: 'New';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Video Modal Styles */
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .video-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .video-container {
+            width: 90%;
+            max-width: 1000px;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.4s ease;
+        }
+        
+        .video-modal.active .video-container {
+            transform: scale(1);
+        }
+        
+        .video-container video {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .close-video {
+            position: absolute;
+            top: -40px;
+            right: -10px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(255, 87, 34, 0.7);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .close-video:hover {
+            background: var(--primary);
+            transform: rotate(90deg);
+        }
+        
+        .video-title {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .play-icon {
+            position: absolute;
+            right: 10px;
+            color: var(--primary);
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+        
+        .module-content li:hover .play-icon {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .module-content ul {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                padding: 2.5rem 0 2rem;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .nav-container {                
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: center; 
+                flex-wrap: nowrap;
+                gap: 0.5rem;
+                padding: 0 1rem;
+            }
+            
+            nav a {
+                font-size: 0.85rem;
+                padding: 0.5rem 0.8rem;
+            }
+            
+            .module-header h2 {
+                font-size: 1.1rem;
+                gap: 0.5rem;
+            }
+            
+            .module-header {
+                padding: 1.2rem 1rem;
+            }
+            
+            .module-header i {
+                width: 32px;
+                height: 32px;
+                font-size: 1rem;
+            }
+            
+            .module-header .toggle-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 0.9rem;
+            }
+            
+            .module-content.active {
+                padding: 1.2rem 1rem;
+            }
+            
+            .module-content li {
+                padding: 1rem;
+                font-size: 0.95rem;
+            }
+            
+            .container {
+                margin: 1.5rem auto;
+            }
+            
+            .module-card {
+                margin-bottom: 1rem;
+                border-radius: 18px;
+            }
+            
+            .video-title {
+                font-size: 1.2rem;
+            }
+            
+            .close-video {
+                top: -35px;
+                right: -5px;
+                width: 35px;
+                height: 35px;
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            header p {
+                font-size: 0.9rem;
+            }
+            
+            .module-header h2 {
+                font-size: 1rem;
+            }
+            
+            .module-content li {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .new-item:after {
+                font-size: 0.6rem;
+                padding: 0.1rem 0.4rem;
+                top: -8px;
+                right: -8px;
+            }
+        }
+        .container { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+        .module-content ul { list-style-type: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+        .module-content li { background: #FFF; padding: 1.2rem; border-radius: 16px; cursor: pointer; display: flex; align-items: center; gap: 0.8rem; font-weight: 500; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); border: 1px solid rgba(255, 87, 34, 0.05); }
+        .module-content li:hover { background: linear-gradient(135deg, #FFF8F0, #FFAB91); transform: translateX(8px); box-shadow: 0 6px 20px rgba(255, 87, 34, 0.1); }
+        .video-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: none; align-items: center; justify-content: center; }
+        .video-container { position: relative; width: 90%; max-width: 800px; }
+        .video-container video { width: 100%; border-radius: 12px; }
+        .close-video { position: absolute; top: -40px; right: -10px; color: white; font-size: 2rem; cursor: pointer; background: rgba(255, 87, 34, 0.7); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    </style>
+</head>
+<body>
+    <header>
+        <canvas id="fluid-canvas"></canvas>
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <h1 class="floating">Каспимен бизнес</h1>
+            <p>Қош келдіңіздер біздің сабаққа 🙌 <br>
+                Ең алдымен ниетімізді түзеп <br>
+                Болмай қалады деген ойдан алыс болыңыз ❤️ <br>
+                Барынша нәтижеге фокус қояйық 👍</p>
+        </div>
+        <div class="header-shapes"></div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="#module1">1-Модуль</a>
+            <a href="#module2">2-Модуль</a>
+            <a href="#module3">3-Модуль</a>
+            <a href="#module4">4-Модуль</a>
+            <a href="#module5">5-Модуль</a>
+            <a href="#bonus">Бонус</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="module-card" id="module1">
+            <div class="module-header">
+                <h2><i class="fas fa-rocket"></i> 1-Модуль: Бизнеске кіріспе</h2>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="module-content">
+                <ul>
+                    <li data-video="n1.MOV">Танысу<i class="fas fa-play-circle play-icon"></i></li>
+                    <li data-video="n2.MOV">Жауапкершілік <i class="fas fa-play-circle play-icon"></i></li>
+                    <li data-video="n3.MOV">ИП ашу <i class="fas fa-play-circle play-icon"></i></li>
+                    <li data-video="n4.MOV">Kaspi pay регистрация жасау<i class="fas fa-play-circle play-icon"></i></li>
+                    <li data-video="n5.MOV">Kaspi магазинге одобрение алу жолдары<i class="fas fa-play-circle play-icon"></i></li>
+                    <li data-video="n6.MOV">Kaspi касса қосу<i class="fas fa-play-circle play-icon"></i></li>
+                    <!-- <li data-video="n7.MOV">Kaspi касса қосу <i class="fas fa-play-circle play-icon"></i></li> -->
+                     <li data-video="n8.MP4">ИП налогтары от и до <i class="fas fa-play-circle play-icon"></i></li> 
+                </ul>
+            </div>
+        </div>
+        
+        <div class="module-card" id="module2">
+            <div class="module-header">
+                <h2><i class="fas fa-shopping-cart"></i> 2-Модуль: Тауар таңдау және сатып алу</h2>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="module-content">
+                <ul>
+                    <li data-video="n9.MP4">Ашық категория және жабық категория <i class="fas fa-play-circle play-icon"></i></li>
+                    <li data-video="n10.MP4">Анализ жасау <i class="fas fa-play-circle play-icon"></i></li>
+                    <li data-video="n11.MOV">Маржа есептеу <i class="fas fa-play-circle play-icon"></i></li>
+                    <!-- <li data-video="n12.MOV">Закуп жасау <i class="fas fa-play-circle play-icon"></i></li> -->
+                    <li data-video="n13.MOV">Алипей регистрация <i class="fas fa-play-circle play-icon"></i></li>
+                    <li data-video="n14.MOV">1688 регистрация <i class="fas fa-play-circle play-icon"></i></li>
+                    <li data-video="n15.MOV">Пиндуодо <i class="fas fa-play-circle play-icon"></i></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="module-card" id="module3">
+            <div class="module-header">
+                <h2><i class="fas fa-store"></i> 3-Модуль: Kaspi дүкен басқару</h2>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="module-content">
+                <ul>
+                    <!-- <li data-video="n16.MOV">Кaspi магазин ашылды <i class="fas fa-play-circle play-icon"></i></li> -->
+                    <!-- <li data-video="n17.MOV">Кабинет настройкасын жасау <i class="fas fa-play-circle play-icon"></i></li> -->
+                    <li data-video="n18.MOV">Магазин аты, Логотип <i class="fas fa-play-circle play-icon"></i></li>
+                    <!-- <li data-video="n19.MOV">Доставка түрлерін қосу <i class="fas fa-play-circle play-icon"></i></li> -->
+                    <!-- <li data-video="n20.MOV">Товар салудың 2 түрі <i class="fas fa-play-circle play-icon"></i></li> -->
+                    <!-- <li data-video="n21.MOV">Демпинг <i class="fas fa-play-circle play-icon"></i></li> -->
+                    <li data-video="n22.MOV">Упаковка ережелері <i class="fas fa-play-circle play-icon"></i></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="module-card" id="module4">
+            <div class="module-header">
+                <h2><i class="fas fa-bolt"></i> 4-Модуль: Жылдам сату</h2>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="module-content">
+                <ul>
+                    <li data-video="n23.MOV">Предзаказ Таблицамен <i class="fas fa-play-circle play-icon"></i></li>
+                    <li data-video="n24.MOV">Предзаказ ботпен <i class="fas fa-play-circle play-icon"></i></li>
+                    <!-- <li data-video="n25.MOV">Маркетинг <i class="fas fa-play-circle play-icon"></i></li> -->
+                    <!-- <li data-video="n26.MOV">Быстрые продажи <i class="fas fa-play-circle play-icon"></i></li> -->
+                </ul>
+            </div>
+        </div>
+        
+        <div class="module-card" id="module5">
+            <div class="module-header">
+                <h2><i class="fas fa-shield-alt"></i> 5-Модуль: Қателіктерден сақтану</h2>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="module-content">
+                <ul>
+                    <li data-video="n27.MOV">Жасауға болмайтын қателіктер <i class="fas fa-play-circle play-icon"></i></li>
+                    <!-- <li data-video="n28.MOV">Возвраттар, отмена <i class="fas fa-play-circle play-icon"></i></li> -->
+                    <!-- <li data-video="n29.MOV">Компенсация алу <i class="fas fa-play-circle play-icon"></i></li> -->
+                </ul>
+            </div>
+        </div>
+        
+        <div class="module-card" id="bonus">
+            <div class="module-header">
+                <h2><i class="fas fa-gift"></i> Бонус</h2>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="module-content">
+                <ul>
+                    <li data-video="n30.MOV">Поставщиктер каналы <i class="fas fa-play-circle play-icon"></i></li>
+                    <li data-video="n31.MOV">100 Топ Ниша <i class="fas fa-play-circle play-icon"></i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Video Modal -->
+    <div class="video-modal">
+        <div class="video-container">
+            <div class="video-title"></div>
+            <video controls></video>
+            <div class="close-video">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2025 Kaspi Курстары. Барлық құқықтар қорғалған.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.module-content li').forEach(item => {
+    item.addEventListener('click', function() {
+        // Get the video source attribute
+        const videoSrc = this.getAttribute('data-video');
+        
+        // If it's the first item with an anchor tag, let the anchor handle navigation
+        if (this.querySelector('a')) {
+            return;
+        }
+        
+        // For other items, extract the filename without extension
+        const pageName = videoSrc.split('.')[0];
+        
+        // Navigate to the corresponding HTML page
+        window.location.href = pageName + '.html';
+    });
+});
+
+        document.querySelector('.close-video').addEventListener('click', function() {
+            const modal = document.querySelector('.video-modal');
+            modal.style.display = 'none';
+            modal.querySelector('video').src = '';
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fluid animation for header background
+            const canvas = document.getElementById('fluid-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            
+            // Set canvas dimensions
+            function resize() {
+                width = canvas.width = canvas.offsetWidth;
+                height = canvas.height = canvas.offsetHeight;
+            }
+            
+            window.addEventListener('resize', resize);
+            resize();
+            
+            // Fluid simulation parameters
+            const particles = [];
+            const particleCount = Math.min(50, Math.floor(width / 20)); // Reduce particles on small screens
+            const colors = ['#FF9800', '#FF5722', '#FF3D00', '#FFAB91'];
+            
+            // Create particles
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 20 + 10,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    vx: Math.random() * 2 - 1,
+                    vy: Math.random() * 2 - 1,
+                    opacity: Math.random() * 0.5 + 0.2
+                });
+            }
+            
+            // Animation loop
+            function animate() {
+                // Clear canvas with semi-transparent background for trail effect
+                ctx.fillStyle = 'rgba(255, 87, 34, 0.03)';
+                ctx.fillRect(0, 0, width, height);
+                
+                // Update and draw particles
+                particles.forEach(particle => {
+                    // Move particle
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    
+                    // Bounce off edges
+                    if (particle.x < 0 || particle.x > width) particle.vx *= -1;
+                    if (particle.y < 0 || particle.y > height) particle.vy *= -1;
+                    
+                    // Draw particle
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = particle.color;
+                    ctx.globalAlpha = particle.opacity;
+                    ctx.fill();
+                    
+                    // Add glow effect
+                    const gradient = ctx.createRadialGradient(
+                        particle.x, particle.y, 0,
+                        particle.x, particle.y, particle.radius * 2
+                    );
+                    gradient.addColorStop(0, particle.color);
+                    gradient.addColorStop(1, 'rgba(255, 87, 34, 0)');
+                    
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.radius * 2, 0, Math.PI * 2);
+                    ctx.fillStyle = gradient;
+                    ctx.globalAlpha = particle.opacity * 0.3;
+                    ctx.fill();
+                    
+                    // Reset opacity
+                    ctx.globalAlpha = 1;
+                    
+                    // Slightly change direction randomly
+                    if (Math.random() > 0.95) {
+                        particle.vx += (Math.random() * 0.4 - 0.2);
+                        particle.vy += (Math.random() * 0.4 - 0.2);
+                    }
+                    
+                    // Limit velocity
+                    const maxVel = 1.5;
+                    const vel = Math.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
+                    if (vel > maxVel) {
+                        particle.vx = (particle.vx / vel) * maxVel;
+                        particle.vy = (particle.vy / vel) * maxVel;
+                    }
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // Start animation
+            animate();
+            
+            // Handle module click to expand/collapse
+            const moduleHeaders = document.querySelectorAll('.module-header');
+            
+            moduleHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const moduleCard = this.parentElement;
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('.toggle-icon');
+                    
+                    content.classList.toggle('active');
+                    icon.classList.toggle('icon-rotate');
+                    moduleCard.classList.toggle('active');
+                    
+                    // Close other modules
+                    document.querySelectorAll('.module-content').forEach(item => {
+                        if (item !== content && item.classList.contains('active')) {
+                            item.classList.remove('active');
+                            item.previousElementSibling.querySelector('.toggle-icon').classList.remove('icon-rotate');
+                            item.parentElement.classList.remove('active');
+                        }
+                    });
+                    
+                    // Add subtle animation to list items when opening
+                    if (content.classList.contains('active')) {
+                        const listItems = content.querySelectorAll('li');
+                        listItems.forEach((item, index) => {
+                            item.style.opacity = '0';
+                            item.style.transform = 'translateX(20px)';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateX(0)';
+                            }, 100 + (index * 50));
+                        });
+                    }
+                });
+            });
+            
+            // Smooth scroll for navigation
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Open the target module
+                    setTimeout(() => {
+                        const content = targetElement.querySelector('.module-content');
+                        const icon = targetElement.querySelector('.toggle-icon');
+                        
+                        if (!content.classList.contains('active')) {
+                            content.classList.add('active');
+                            icon.classList.add('icon-rotate');
+                            targetElement.classList.add('active');
+                            
+                            // Animate list items
+                            const listItems = content.querySelectorAll('li');
+                            listItems.forEach((item, index) => {
+                                item.style.opacity = '0';
+                                item.style.transform = 'translateX(20px)';
+                                setTimeout(() => {
+                                    item.style.opacity = '1';
+                                    item.style.transform = 'translateX(0)';
+                                }, 100 + (index * 50));
+                            });
+                        }
+                    }, 500);
+                });
+            });
+            
+            // Open the first module by default
+            const firstModule = document.querySelector('.module-content');
+            const firstIcon = document.querySelector('.module-header .toggle-icon');
+            const firstCard = document.querySelector('.module-card');
+            firstModule.classList.add('active');
+            firstIcon.classList.add('icon-rotate');
+            firstCard.classList.add('active');
+            
+            // Animate list items in first module
+            const listItems = firstModule.querySelectorAll('li');
+            listItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(20px)';
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                }, 500 + (index * 50));
+            });
+            
+            // Add hover effect to nav items
+            const navItems = document.querySelectorAll('nav a');
+            navItems.forEach(item => {
+                item.addEventListener('mouseover', function() {
+                    navItems.forEach(navItem => {
+                        if (navItem !== this) {
+                            navItem.style.opacity = '0.6';
+                        }
+                    });
+                });
+                
+                item.addEventListener('mouseout', function() {
+                    navItems.forEach(navItem => {
+                        navItem.style.opacity = '1';
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+        
