@@ -15,6 +15,8 @@
             --dark: #2D3142;
             --light: #FFF8F0;
             --accent: #FF3D00;
+            --kaspi-red: #F14635;
+            --kaspi-light: #FFEBE9;
         }
         
         * {
@@ -26,54 +28,189 @@
         
         body {
             background-color: var(--light);
+            background-image: linear-gradient(135deg, #fff8f0 0%, #fff 100%);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             padding: 20px;
-        }
-        
-        
-        .text-content {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-        
-
-        .video-title {
-            text-align: center;
-            margin: 20px 0;
-            font-size: 2.5rem;
             color: var(--dark);
-            font-weight: 600;
+            line-height: 1.6;
         }
         
-        .video-container {
+        .page-title {
+            text-align: center;
+            margin: 20px 0 30px;
+            font-size: 2.5rem;
+            color: var(--kaspi-red);
+            font-weight: 700;
             position: relative;
-            width: 100%;
+            padding-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--kaspi-red), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .content-container {
             max-width: 1000px;
-            margin: 30px auto;
-            border-radius: 12px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            background-color: #000;
-        }
-        
-        .video-wrapper {
+            padding: 40px;
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
         }
         
-        .video-wrapper iframe {
+        .content-container::before {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--kaspi-red), #FF7043);
+        }
+        
+        .text-content {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            position: relative;
+            padding: 30px;
+            background-color: #FAFAFA;
             border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .text-content p {
+            margin-bottom: 20px;
+        }
+        
+        .text-content p:first-child {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--kaspi-red);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .method {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .method-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--kaspi-red);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(241, 70, 53, 0.3);
+        }
+        
+        .method-text {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+        
+        .video-section {
+            margin-top: 40px;
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--kaspi-light), #FFF);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .video-title {
+            font-size: 1.8rem;
+            color: var(--kaspi-red);
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .video-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--kaspi-red), transparent);
+            border-radius: 1.5px;
+        }
+        
+        .video-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-placeholder i {
+            font-size: 4rem;
+            color: var(--kaspi-red);
+            opacity: 0.8;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .video-placeholder:hover i {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+        
+        .video-placeholder::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(241, 70, 53, 0.1), rgba(255, 255, 255, 0.1));
+            z-index: 1;
+        }
+        
+        .video-text {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: var(--dark);
+            font-weight: 500;
         }
         
         .navigation-buttons {
@@ -88,22 +225,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 14px 28px;
+            background: linear-gradient(135deg, var(--kaspi-red), #FF7043);
             color: white;
             border: none;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+            box-shadow: 0 4px 15px rgba(241, 70, 53, 0.3);
             text-decoration: none;
         }
         
         .nav-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 87, 34, 0.4);
+            box-shadow: 0 8px 25px rgba(241, 70, 53, 0.4);
         }
         
         .nav-button i {
@@ -119,9 +256,41 @@
         }
         
         @media (max-width: 768px) {
-            .video-title {
+            .page-title {
                 font-size: 1.8rem;
                 margin: 15px 0;
+            }
+            
+            .content-container {
+                padding: 25px;
+            }
+            
+            .text-content {
+                padding: 20px;
+                font-size: 1.1rem;
+            }
+            
+            .method {
+                padding: 15px;
+            }
+            
+            .method-number {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+                margin-right: 15px;
+            }
+            
+            .method-text {
+                font-size: 1.1rem;
+            }
+            
+            .video-section {
+                padding: 20px;
+            }
+            
+            .video-title {
+                font-size: 1.5rem;
             }
             
             .navigation-buttons {
@@ -142,12 +311,23 @@
     
     <div class="content-container">
         <div class="text-content">
-            <p>Товар салудың 2 түрі :</p>
-            <p>1. көшіру (импорт) каспиде бар карточкаға (товарға) қосылу</p>
-            <p>2.с нуля - каспиде ол товар жоқ болған жағдайда(жаңадан карточка жасайсыз)</p>
+            <p>Товар салудың 2 түрі:</p>
+            
+            <div class="method">
+                <div class="method-number">1</div>
+                <div class="method-text">
+                    Көшіру (импорт) каспиде бар карточкаға (товарға) қосылу
+                </div>
+            </div>
+            
+            <div class="method">
+                <div class="method-number">2</div>
+                <div class="method-text">
+                    С нуля - каспиде ол товар жоқ болған жағдайда (жаңадан карточка жасайсыз)
+                </div>
+            </div>
         </div>
         
-
         <div class="video-container">
             <div class="video-wrapper">
                 <!-- YouTube embed for the video with ID MzEE_DwIo0o -->
@@ -161,29 +341,28 @@
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/GZpo5I2NIs4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </div>
-        
+    </div>
 
-        <div class="navigation-buttons">
-            <a href="index.html" class="nav-button back-button">
-                <i class="fas fa-arrow-left"></i> Артқа қайту
-            </a>
-            <a href="n21.html" class="nav-button next-button">
-                Келесі сабақ <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    
-        <script>
-            // Add keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowLeft') {
-                    // Go to previous page
-                    window.location.href = 'index.html';
-                } else if (e.key === 'ArrowRight') {
-                    // Go to next page
-                    window.location.href = 'n21.html';
-                }
-            });
-        </script>
+    <div class="navigation-buttons">
+        <a href="index.html" class="nav-button back-button">
+            <i class="fas fa-arrow-left"></i> Артқа қайту
+        </a>
+        <a href="n21.html" class="nav-button next-button">
+            Келесі сабақ <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <script>
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                // Go to previous page
+                window.location.href = 'index.html';
+            } else if (e.key === 'ArrowRight') {
+                // Go to next page
+                window.location.href = 'n21.html';
+            }
+        });
     </script>
 </body>
 </html>
