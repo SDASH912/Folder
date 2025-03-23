@@ -72,6 +72,58 @@
             border: none;
             border-radius: 12px;
         }
+
+        .promo-box {
+            max-width: 1000px;
+            margin: 30px auto;
+            background-color: var(--success-light);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--success);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .promo-box::before {
+            content: "✅";
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            font-size: 50px;
+            opacity: 0.1;
+            color: var(--success);
+        }
+        
+        .promo-box p {
+            color: var(--dark);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .promo-box a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .promo-box a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        .promo-code {
+            display: inline-block;
+            background-color: var(--dark);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 10px 0;
+            letter-spacing: 1px;
+        }
         
         .page-title {
             text-align: center;
@@ -284,6 +336,10 @@
                 font-size: 1.8rem;
                 margin: 15px 0;
             }
+
+            .promo-box {
+                padding: 20px;
+            }
             
             .content-container {
                 padding: 25px;
@@ -395,6 +451,31 @@
             <div class="conclusion">
                 Бағаны тым төмендетпей-ақ, сапалы қызмет көрсету арқылы да Kaspi-де жақсы сатылым жасауға болады!
             </div>
+        </div>
+
+        <div class="promo-box">
+            <p>
+                ✅ Предзаказ сатудың тағы бір жолы – бот!
+                Автоматтандырылған жүйе арқылы тапсырысты жеңіл қабылдап, процесті оңтайландыруға болады. Төменде арнайы боттың сілтемесін қалдырдым. Ескерту: бұл бот ақылы. Бастапқы 1 апта тегін жұымыс жасап көруге болады.
+            </p>
+            <p>
+                <a href="https://kaskyr.com/" target="_blank">https://kaskyr.com/</a>
+            </p>
+            <p>
+                Промокод: <span class="promo-code">PZC5P7</span>
+            </p>
+            <p>
+                Осы промокодпен Қасыр ботқа кірсеніз, 2 апта тегінге сынақта қолдана аласыз ботты
+            </p>
+        </div>
+    
+        <div class="navigation-buttons">
+            <a href="index.html" class="nav-button back-button">
+                <i class="fas fa-arrow-left"></i> Артқа қайту
+            </a>
+            <a href="n27.html" class="nav-button next-button">
+                Келесі сабақ <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
         
         
