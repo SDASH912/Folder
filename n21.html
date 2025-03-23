@@ -36,6 +36,42 @@
             color: var(--dark);
             line-height: 1.6;
         }
+
+        .video-title {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2.5rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background-color: #000;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
         
         .page-title {
             text-align: center;
@@ -289,7 +325,15 @@
     </style>
 </head>
 <body>
-    <h1 class="page-title">Kaspi-де демпинг және предзаказ</h1>
+    <h1 class="page-title">Демпинг</h1>
+
+
+    <div class="video-container">
+        <div class="video-wrapper">
+            <!-- YouTube embed for the video with ID MzEE_DwIo0o -->
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/ZjWa1ExZ1zg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
     
     <div class="content-container">
         <div class="dumping-content">
@@ -353,38 +397,7 @@
             </div>
         </div>
         
-        <h2 class="preorder-title">Предзаказ таблица</h2>
         
-        <table class="preorder-table">
-            <thead>
-                <tr>
-                    <th>Параметр</th>
-                    <th>Сипаттама</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Предзаказ дегеніміз не?</td>
-                    <td>Тауар әлі қоймада жоқ кезде алдын-ала тапсырыс алу</td>
-                </tr>
-                <tr>
-                    <td>Қашан қолданылады?</td>
-                    <td>Жаңа шыққан тауарлар, сұранысы жоғары тауарлар, маусымдық тауарлар үшін</td>
-                </tr>
-                <tr>
-                    <td>Артықшылықтары</td>
-                    <td>Сұранысты алдын-ала білу, тауар келгенде бірден сату, клиенттерді жоғалтпау</td>
-                </tr>
-                <tr>
-                    <td>Кемшіліктері</td>
-                    <td>Тауар келмей қалса, клиенттер наразы болуы мүмкін</td>
-                </tr>
-                <tr>
-                    <td>Kaspi-де қалай жасалады?</td>
-                    <td>Тауарды "Предзаказ" белгісімен қосу, жеткізу мерзімін дұрыс көрсету</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 
     <div class="navigation-buttons">
