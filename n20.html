@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Танысу - Kaspi Курстары</title>
+    <title>Товар салудың 2 түрі - Kaspi Курстары</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,6 +15,8 @@
             --dark: #2D3142;
             --light: #FFF8F0;
             --accent: #FF3D00;
+            --kaspi-red: #F14635;
+            --kaspi-light: #FFEBE9;
         }
         
         * {
@@ -30,42 +32,61 @@
             flex-direction: column;
             min-height: 100vh;
             padding: 20px;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin: 20px 0 30px;
+            font-size: 2.5rem;
+            color: var(--kaspi-red);
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--kaspi-red), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .content-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 30px;
+        }
+        
+        .text-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .text-content p {
+            margin-bottom: 15px;
+        }
+        
+        .video-section {
+            margin-top: 30px;
+            text-align: center;
         }
         
         .video-title {
-            text-align: center;
-            margin: 20px 0;
-            font-size: 2.5rem;
-            color: var(--dark);
-            font-weight: 600;
-        }
-        
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 1000px;
-            margin: 30px auto;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            background-color: #000;
-        }
-        
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-        }
-        
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 12px;
+            font-size: 1.5rem;
+            color: var(--kaspi-red);
+            margin-bottom: 20px;
         }
         
         .navigation-buttons {
@@ -81,7 +102,7 @@
             align-items: center;
             justify-content: center;
             padding: 12px 25px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--kaspi-red), #FF7043);
             color: white;
             border: none;
             border-radius: 50px;
@@ -89,13 +110,13 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+            box-shadow: 0 4px 15px rgba(241, 70, 53, 0.3);
             text-decoration: none;
         }
         
         .nav-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 87, 34, 0.4);
+            box-shadow: 0 8px 25px rgba(241, 70, 53, 0.4);
         }
         
         .nav-button i {
@@ -111,9 +132,13 @@
         }
         
         @media (max-width: 768px) {
-            .video-title {
+            .page-title {
                 font-size: 1.8rem;
                 margin: 15px 0;
+            }
+            
+            .content-container {
+                padding: 20px;
             }
             
             .navigation-buttons {
@@ -130,46 +155,52 @@
     </style>
 </head>
 <body>
-    <h1 class="video-title">Товар салудың 2 түрі</h1>
+    <h1 class="page-title">Товар салудың 2 түрі</h1>
     
-
-    <div class="video-container">
-        <div class="video-wrapper">
-            <!-- YouTube embed for the video with ID MzEE_DwIo0o -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/895XNiFQI4Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <div class="content-container">
+        <div class="text-content">
+            <p>Товар салудың 2 түрі :</p>
+            <p>1. көшіру (импорт) каспиде бар карточкаға (товарға) қосылу</p>
+            <p>2.с нуля - каспиде ол товар жоқ болған жағдайда(жаңадан карточка жасайсыз)</p>
         </div>
-    </div>
+        
 
-    <div class="video-container">
-        <div class="video-wrapper">
-            <!-- YouTube embed for the video with ID MzEE_DwIo0o -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/GZpo5I2NIs4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="video-container">
+            <div class="video-wrapper">
+                <!-- YouTube embed for the video with ID MzEE_DwIo0o -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/895XNiFQI4Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
         </div>
-    </div>
+        
+        <div class="video-container">
+            <div class="video-wrapper">
+                <!-- YouTube embed for the video with ID MzEE_DwIo0o -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/GZpo5I2NIs4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+
+        <div class="navigation-buttons">
+            <a href="index.html" class="nav-button back-button">
+                <i class="fas fa-arrow-left"></i> Артқа қайту
+            </a>
+            <a href="n21.html" class="nav-button next-button">
+                Келесі сабақ <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
     
-
-
-
-    <div class="navigation-buttons">
-        <a href="index.html" class="nav-button back-button">
-            <i class="fas fa-arrow-left"></i> Артқа қайту
-        </a>
-        <a href="21.html" class="nav-button next-button">
-            Келесі сабақ <i class="fas fa-arrow-right"></i>
-        </a>
-    </div>
-
-    <script>
-        // Add keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowLeft') {
-                // Go to previous page
-                window.location.href = 'index.html';
-            } else if (e.key === 'ArrowRight') {
-                // Go to next page
-                window.location.href = 'n21.html';
-            }
-        });
+        <script>
+            // Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') {
+                    // Go to previous page
+                    window.location.href = 'index.html';
+                } else if (e.key === 'ArrowRight') {
+                    // Go to next page
+                    window.location.href = 'n21.html';
+                }
+            });
+        </script>
     </script>
 </body>
 </html>
