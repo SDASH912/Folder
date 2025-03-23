@@ -306,6 +306,52 @@
                 max-width: 300px;
             }
         }
+
+
+
+        .link-box {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            border-top: 5px solid var(--zammler-blue);
+        }
+        
+        .zammler-title {
+            font-size: 1.8rem;
+            color: var(--zammler-blue);
+            margin-bottom: 20px;
+        }
+        
+        .zammler-description {
+            margin-bottom: 25px;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .zammler-link {
+            display: inline-block;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, var(--zammler-blue), #4D96D9);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 86, 164, 0.3);
+        }
+        
+        .zammler-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 86, 164, 0.4);
+        }
+        
+        .zammler-link i {
+            margin-left: 8px;
+        }
     </style>
 </head>
 <body>
@@ -525,6 +571,16 @@
                 <span class="check"><i class="fas fa-check-circle"></i></span>
                 <p>Kaspi қалааралық жеткізу – сатушыларға ыңғайлы, себебі сіз тек замлерге апарасыз, ал Kaspi бәрін өзі тасымалдайды!</p>
             </div>
+        </div>
+
+        <div class="link-box">
+            <h1 class="zammler-title">Zammler Контактілері</h1>
+            <p class="zammler-description">
+                Kaspi-дің ресми логистикалық серіктесі – Zammler компаниясы. Толық контакт ақпаратын ресми сайтынан таба аласыз.
+            </p>
+            <a href="https://zammler.com.kz/ru/contacts/" target="_blank" class="zammler-link">
+                Zammler контактілері <i class="fas fa-external-link-alt"></i>
+            </a>
         </div>
     </div>
 
