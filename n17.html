@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="kz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Танысу - Kaspi Курстары</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF5722;
+            --secondary: #FFAB91;
+            --dark: #2D3142;
+            --light: #FFF8F0;
+            --accent: #FF3D00;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .video-title {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2.5rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background-color: #000;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px auto;
+            max-width: 1000px;
+            width: 100%;
+        }
+        
+        .nav-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+            text-decoration: none;
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 87, 34, 0.4);
+        }
+        
+        .nav-button i {
+            margin: 0 8px;
+        }
+        
+        .back-button i {
+            margin-right: 10px;
+        }
+        
+        .next-button i {
+            margin-left: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .video-title {
+                font-size: 1.8rem;
+                margin: 15px 0;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            .nav-button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="video-title">Кабинет настройкасын жасау</h1>
+    
+
+    <div class="video-container">
+        <div class="video-wrapper">
+            <!-- YouTube embed for the video with ID MzEE_DwIo0o -->
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/hzXgqm1oYrA?si=verrsp__1A4Mh7FP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
+    
+
+
+
+    <div class="navigation-buttons">
+        <a href="index.html" class="nav-button back-button">
+            <i class="fas fa-arrow-left"></i> Артқа қайту
+        </a>
+        <a href="n18.html" class="nav-button next-button">
+            Келесі сабақ <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <script>
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                // Go to previous page
+                window.location.href = 'index.html';
+            } else if (e.key === 'ArrowRight') {
+                // Go to next page
+                window.location.href = 'n18.html';
+            }
+        });
+    </script>
+</body>
+</html>
