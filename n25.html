@@ -15,8 +15,6 @@
             --dark: #2D3142;
             --light: #FFF8F0;
             --accent: #FF3D00;
-            --success: #4CAF50;
-            --success-light: #E8F5E9;
         }
         
         * {
@@ -70,58 +68,6 @@
             border-radius: 12px;
         }
         
-        .promo-box {
-            max-width: 1000px;
-            margin: 30px auto;
-            background-color: var(--success-light);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid var(--success);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .promo-box::before {
-            content: "✅";
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            font-size: 50px;
-            opacity: 0.1;
-            color: var(--success);
-        }
-        
-        .promo-box p {
-            color: var(--dark);
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        
-        .promo-box a {
-            color: var(--primary);
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .promo-box a:hover {
-            color: var(--accent);
-            text-decoration: underline;
-        }
-        
-        .promo-code {
-            display: inline-block;
-            background-color: var(--dark);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-weight: 600;
-            margin: 10px 0;
-            letter-spacing: 1px;
-        }
-        
         .navigation-buttons {
             display: flex;
             justify-content: space-between;
@@ -170,10 +116,6 @@
                 margin: 15px 0;
             }
             
-            .promo-box {
-                padding: 20px;
-            }
-            
             .navigation-buttons {
                 flex-direction: column;
                 gap: 15px;
@@ -188,29 +130,20 @@
     </style>
 </head>
 <body>
-    <h1 class="video-title">Предзаказ ботпен</h1>
+    <h1 class="video-title">Маркетинг</h1>
     
-    <div class="promo-box">
-        <p>
-            ✅ Предзаказ сатудың тағы бір жолы – бот!
-            Автоматтандырылған жүйе арқылы тапсырысты жеңіл қабылдап, процесті оңтайландыруға болады. Төменде арнайы боттың сілтемесін қалдырдым. Ескерту: бұл бот ақылы. Бастапқы 1 апта тегін жұымыс жасап көруге болады.
-        </p>
-        <p>
-            <a href="https://kaskyr.com/" target="_blank">https://kaskyr.com/</a>
-        </p>
-        <p>
-            Промокод: <span class="promo-code">PZC5P7</span>
-        </p>
-        <p>
-            Осы промокодпен Қасыр ботқа кірсеніз, 2 апта тегінге сынақта қолдана аласыз ботты
-        </p>
+    <div class="video-container">
+        <div class="video-wrapper">
+            <!-- YouTube embed for the video with ID MzEE_DwIo0o -->
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Zeh3B2MBZsk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
     </div>
-
+    
     <div class="navigation-buttons">
         <a href="index.html" class="nav-button back-button">
             <i class="fas fa-arrow-left"></i> Артқа қайту
         </a>
-        <a href="n25.html" class="nav-button next-button">
+        <a href="n26.html" class="nav-button next-button">
             Келесі сабақ <i class="fas fa-arrow-right"></i>
         </a>
     </div>
@@ -223,7 +156,7 @@
                 window.location.href = 'index.html';
             } else if (e.key === 'ArrowRight') {
                 // Go to next page
-                window.location.href = 'n25.html';
+                window.location.href = 'n26.html';
             }
         });
     </script>
