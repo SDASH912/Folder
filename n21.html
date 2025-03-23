@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="kz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaspi-де демпинг - Kaspi Курстары</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF5722;
+            --secondary: #FFAB91;
+            --dark: #2D3142;
+            --light: #FFF8F0;
+            --accent: #FF3D00;
+            --kaspi-red: #F14635;
+            --kaspi-light: #FFEBE9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            background-image: linear-gradient(135deg, #fff8f0 0%, #fff 100%);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin: 20px 0 30px;
+            font-size: 2.5rem;
+            color: var(--kaspi-red);
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--kaspi-red), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .content-container {
+            max-width: 1000px;
+            margin: 0 auto 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .content-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--kaspi-red), #FF7043);
+        }
+        
+        .dumping-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            padding: 20px;
+            background-color: #FAFAFA;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .dumping-title {
+            font-size: 1.6rem;
+            color: var(--kaspi-red);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .dumping-description {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            color: var(--kaspi-red);
+            margin: 25px 0 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: var(--kaspi-red);
+        }
+        
+        .negative-points, .positive-points {
+            margin: 20px 0;
+        }
+        
+        .point-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 10px 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .point-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .point-item i {
+            margin-right: 10px;
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+        
+        .negative-points .point-item i {
+            color: #F14635;
+        }
+        
+        .positive-points .point-item i {
+            color: #4CAF50;
+        }
+        
+        .conclusion {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--kaspi-light), #FFF);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .preorder-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .preorder-table th {
+            background-color: var(--kaspi-red);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .preorder-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .preorder-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .preorder-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .preorder-table tr:hover {
+            background-color: var(--kaspi-light);
+        }
+        
+        .preorder-title {
+            font-size: 1.6rem;
+            color: var(--kaspi-red);
+            margin: 30px 0 20px;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px auto;
+            max-width: 1000px;
+            width: 100%;
+        }
+        
+        .nav-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, var(--kaspi-red), #FF7043);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(241, 70, 53, 0.3);
+            text-decoration: none;
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(241, 70, 53, 0.4);
+        }
+        
+        .nav-button i {
+            margin: 0 8px;
+        }
+        
+        .back-button i {
+            margin-right: 10px;
+        }
+        
+        .next-button i {
+            margin-left: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.8rem;
+                margin: 15px 0;
+            }
+            
+            .content-container {
+                padding: 25px;
+            }
+            
+            .dumping-content {
+                padding: 15px;
+                font-size: 1rem;
+            }
+            
+            .dumping-title, .preorder-title {
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+            
+            .point-item {
+                padding: 10px;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            .nav-button {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .preorder-table th, .preorder-table td {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="page-title">Kaspi-де демпинг және предзаказ</h1>
+    
+    <div class="content-container">
+        <div class="dumping-content">
+            <h2 class="dumping-title">Kaspi-де демпинг: бағаны түсіру арқылы алға шығу</h2>
+            
+            <p class="dumping-description">
+                Kaspi-де бір тауарды бірнеше сатушы ұсынса, жүйе автоматты түрде ең арзанын бірінші көрсетеді. Осыны білетін кейбір сатушылар бағаны әдейі төмендетіп, өз дүкенін алдыңғы қатарға шығаруға тырысады. Бұл процесс демпинг деп аталады.
+            </p>
+            
+            <div class="section">
+                <h3 class="section-title"><i class="fas fa-bullseye"></i> Мақсат қандай?</h3>
+                <p>
+                    Бағаны бәсекелестерден төмен қойып, бірінші болу. Клиенттер көбіне алғашқы шыққан тауарды алады, сондықтан арзан баға – көбірек сатылым деген үміт бар.
+                </p>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title"><i class="fas fa-exclamation-triangle"></i> Бірақ демпингтің кері жақтары да бар:</h3>
+                
+                <div class="negative-points">
+                    <div class="point-item">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Пайда азаяды – өте төмен бағамен сатсаңыз, шығынға кетуіңіз мүмкін.</p>
+                    </div>
+                    <div class="point-item">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Бәсекелестер де бағаны түсіреді – бұл баға соғысына айналып, барлығының табысын азайтады.</p>
+                    </div>
+                    <div class="point-item">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Сапаға әсер етуі мүмкін – арзан сататын сатушылар кейде жеткізу, қаптама сияқты маңызды нәрселерден үнемдей бастайды.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title"><i class="fas fa-lightbulb"></i> Демпингпен емес, сапамен бәсекелескен дұрыс!</h3>
+                
+                <div class="positive-points">
+                    <div class="point-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Жеткізуді жылдамдату</p>
+                    </div>
+                    <div class="point-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Сапалы қаптама жасау</p>
+                    </div>
+                    <div class="point-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Клиентке бонус немесе сыйлық ұсыну</p>
+                    </div>
+                    <div class="point-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Өнім сипаттамасын толық, тартымды етіп жазу</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="conclusion">
+                Бағаны тым төмендетпей-ақ, сапалы қызмет көрсету арқылы да Kaspi-де жақсы сатылым жасауға болады!
+            </div>
+        </div>
+        
+        <h2 class="preorder-title">Предзаказ таблица</h2>
+        
+        <table class="preorder-table">
+            <thead>
+                <tr>
+                    <th>Параметр</th>
+                    <th>Сипаттама</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Предзаказ дегеніміз не?</td>
+                    <td>Тауар әлі қоймада жоқ кезде алдын-ала тапсырыс алу</td>
+                </tr>
+                <tr>
+                    <td>Қашан қолданылады?</td>
+                    <td>Жаңа шыққан тауарлар, сұранысы жоғары тауарлар, маусымдық тауарлар үшін</td>
+                </tr>
+                <tr>
+                    <td>Артықшылықтары</td>
+                    <td>Сұранысты алдын-ала білу, тауар келгенде бірден сату, клиенттерді жоғалтпау</td>
+                </tr>
+                <tr>
+                    <td>Кемшіліктері</td>
+                    <td>Тауар келмей қалса, клиенттер наразы болуы мүмкін</td>
+                </tr>
+                <tr>
+                    <td>Kaspi-де қалай жасалады?</td>
+                    <td>Тауарды "Предзаказ" белгісімен қосу, жеткізу мерзімін дұрыс көрсету</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="navigation-buttons">
+        <a href="n20.html" class="nav-button back-button">
+            <i class="fas fa-arrow-left"></i> Артқа қайту
+        </a>
+        <a href="n22.html" class="nav-button next-button">
+            Келесі сабақ <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <script>
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                // Go to previous page
+                window.location.href = 'n20.html';
+            } else if (e.key === 'ArrowRight') {
+                // Go to next page
+                window.location.href = 'n22.html';
+            }
+        });
+    </script>
+</body>
+</html>
