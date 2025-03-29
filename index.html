@@ -994,7 +994,7 @@
             });
         });
         // Login System
-document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
     const loginOverlay = document.getElementById('loginOverlay');
     const loginForm = document.getElementById('loginForm');
     const loginError = document.getElementById('loginError');
@@ -1005,32 +1005,42 @@ document.addEventListener('DOMContentLoaded', function() {
         loginOverlay.style.display = 'none';
     }
     
+    // Define multiple users
+    const validUsers = [
+        { username: 'admin', password: 'kaspi2025' },
+        { username: 'user1', password: 'password1' },
+        { username: 'user2', password: 'password2' }
+        // Add more users as needed
+    ];
+    
     loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         
-        // Replace with your desired username and password
-        if (username === 'admin' && password === 'kaspi2025') {
+        // Check if credentials match any valid user
+        const isValidUser = validUsers.some(user => 
+            user.username === username && user.password === password
+        );
+        
+        if (isValidUser) {
             localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('currentUser', username); // Store current username
             loginOverlay.style.display = 'none';
         } else {
             loginError.textContent = 'Қате логин немесе құпия сөз!';
         }
     });
     
-    // Add logout functionality (optional)
-    // You can add a logout button somewhere in your site with:
-    // <button id="logoutBtn">Шығу</button>
-    
-    // Then add this code:
-    /*
-    document.getElementById('logoutBtn').addEventListener('click', function() {
-        localStorage.removeItem('isLoggedIn');
-        window.location.reload();
-    });
-    */
+    // Add logout functionality
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('currentUser');
+            window.location.reload();
+        });
+    }
 });
     </script>
     <div id="loginOverlay" class="login-overlay">
