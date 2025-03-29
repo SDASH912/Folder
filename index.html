@@ -301,6 +301,92 @@
             box-shadow: 0 15px 40px rgba(255, 87, 34, 0.15);
         }
         
+
+
+
+
+        /* Login Styles */
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 87, 34, 0.05);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    background: white;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 400px;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+    text-align: center;
+}
+
+.login-card h2 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.login-card p {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-family: inherit;
+}
+
+.login-card button {
+    background: var(--gradient-1);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.login-card button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 87, 34, 0.2);
+}
+
+.error-message {
+    color: #e74c3c;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    min-height: 20px;
+}
+
+
+
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -907,7 +993,64 @@
                 });
             });
         });
+        // Login System
+document.addEventListener('DOMContentLoaded', function() {
+    const loginOverlay = document.getElementById('loginOverlay');
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+    
+    // Check if user is already logged in
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (isLoggedIn === 'true') {
+        loginOverlay.style.display = 'none';
+    }
+    
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        // Replace with your desired username and password
+        if (username === 'admin' && password === 'kaspi2025') {
+            localStorage.setItem('isLoggedIn', 'true');
+            loginOverlay.style.display = 'none';
+        } else {
+            loginError.textContent = 'Қате логин немесе құпия сөз!';
+        }
+    });
+    
+    // Add logout functionality (optional)
+    // You can add a logout button somewhere in your site with:
+    // <button id="logoutBtn">Шығу</button>
+    
+    // Then add this code:
+    /*
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+        localStorage.removeItem('isLoggedIn');
+        window.location.reload();
+    });
+    */
+});
     </script>
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-card">
+            <h2>Kaspi Курстары</h2>
+            <p>Курсқа кіру үшін логин және құпия сөзді енгізіңіз</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Логин</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label>Құпия сөз</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit">Кіру</button>
+                <div id="loginError" class="error-message"></div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
 
