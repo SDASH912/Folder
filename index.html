@@ -385,6 +385,22 @@
 }
 
 
+ /* BUTTON PROBLEMS*/
+
+#logoutBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 1000;
+}
+
 
 
         @keyframes pulse {
@@ -995,47 +1011,60 @@
                 });
             });
         });
-        // Login System
+
+
+
+
+
         document.addEventListener('DOMContentLoaded', function() {
     const loginOverlay = document.getElementById('loginOverlay');
     const loginForm = document.getElementById('loginForm');
     const loginError = document.getElementById('loginError');
-    
+    const logoutBtn = document.getElementById('logoutBtn');
+
     // Check if user is already logged in
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (isLoggedIn === 'true') {
         loginOverlay.style.display = 'none';
+        if (logoutBtn) {
+            logoutBtn.style.display = 'block'; // Show logout button
+        }
+    } else {
+        if (logoutBtn) {
+            logoutBtn.style.display = 'none'; // Hide logout button if not logged in
+        }
     }
-    
+
     // Define multiple users
     const validUsers = [
         { username: 'admin', password: 'kaspi2025' },
         { username: 'user1', password: 'password1' },
         { username: 'user2', password: 'password2' }
-        // Add more users as needed
     ];
-    
+
     loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-        
+
         // Check if credentials match any valid user
         const isValidUser = validUsers.some(user => 
             user.username === username && user.password === password
         );
-        
+
         if (isValidUser) {
             localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('currentUser', username); // Store current username
+            localStorage.setItem('currentUser', username);
             loginOverlay.style.display = 'none';
+            if (logoutBtn) {
+                logoutBtn.style.display = 'block'; // Show logout button after login
+            }
         } else {
             loginError.textContent = 'Қате логин немесе құпия сөз!';
         }
     });
-    
+
     // Add logout functionality
-    const logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', function() {
             localStorage.removeItem('isLoggedIn');
@@ -1044,6 +1073,7 @@
         });
     }
 });
+
     </script>
     <div id="loginOverlay" class="login-overlay">
         <div class="login-card">
