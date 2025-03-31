@@ -109,6 +109,15 @@
         .next-button i {
             margin-left: 10px;
         }
+
+        .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 12%; /* Закрывает только верхнюю часть с логотипом YouTube */
+    background: transparent;
+}
         
         @media (max-width: 768px) {
             .video-title {
@@ -134,19 +143,18 @@
     
     <div class="video-container">
         <div class="video-wrapper">
-            <!-- YouTube embed for the video with ID MzEE_DwIo0o -->
+            <!-- YouTube embed for the video with ID c23dqPvkxnQ -->
             <iframe 
-    width="560" 
-    height="315" 
-    src="https://www.youtube.com/embed/c23dqPvkxnQ?rel=0&modestbranding=1&playsinline=1" 
-    title="YouTube video player" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
-    allowfullscreen 
-    style="pointer-events: none;">
-</iframe>
-
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/c23dqPvkxnQ?rel=0&modestbranding=1&playsinline=1" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+            <div class="overlay"></div> 
         </div>
     </div>
     
