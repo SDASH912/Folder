@@ -148,18 +148,7 @@ iframe {
     
     <div class="video-container">
         <div class="video-wrapper">
-            <!-- YouTube embed for the video with ID c23dqPvkxnQ -->
-            <iframe 
-                width="560" 
-                height="315" 
-                src="https://www.youtube.com/embed/c23dqPvkxnQ?rel=0&modestbranding=1&playsinline=1" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen>
-            </iframe>
-            <div class="overlay"></div> 
+            <div id="player"></div> 
         </div>
     </div>
     
@@ -184,6 +173,34 @@ iframe {
             }
         });
     </script>
+
+
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  var player;
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      videoId: 'c23dqPvkxnQ', // Вставь сюда ID твоего видео
+      playerVars: {
+        'rel': 0, // Отключает похожие видео
+        'modestbranding': 1, // Убирает логотип YouTube
+        'playsinline': 1, // Для мобильных
+        'showinfo': 0, // Убирает заголовок
+        'controls': 1, // Оставляет кнопки управления
+        'disablekb': 1, // Отключает управление с клавиатуры
+      },
+      events: {
+        'onReady': onPlayerReady
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    event.target.playVideo(); // Убери эту строку, если не хочешь автозапуск
+  }
+</script>
 </body>
 </html>
 
