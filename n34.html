@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="kz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaspi Жеткізу Түрлері - Kaspi Курстары</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF5722;
+            --secondary: #FFAB91;
+            --dark: #2D3142;
+            --light: #FFF8F0;
+            --accent: #FF3D00;
+            --kaspi-red: #F14635;
+            --kaspi-light: #FFEBE9;
+            --zammler-blue: #0056A4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin: 20px 0 30px;
+            font-size: 2.5rem;
+            color: var(--kaspi-red);
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--kaspi-red), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .content-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 30px;
+        }
+        
+        .delivery-types {
+            margin-bottom: 40px;
+        }
+        
+        .delivery-image {
+            width: 100%;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .delivery-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .delivery-type {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid var(--kaspi-red);
+            transition: transform 0.3s ease;
+        }
+        
+        .delivery-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .delivery-title {
+            font-size: 1.5rem;
+            color: var(--kaspi-red);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .delivery-title .emoji {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .benefit {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .benefit .check {
+            color: #4CAF50;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+        
+        .when-useful {
+            background-color: var(--kaspi-light);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .when-useful-title {
+            color: var(--kaspi-red);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .useful-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .useful-point .check {
+            color: var(--kaspi-red);
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+        
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+            margin: 30px 0;
+            border-radius: 1px;
+        }
+        
+        .pricing-section {
+            margin-top: 40px;
+        }
+        
+        .pricing-title {
+            font-size: 1.8rem;
+            color: var(--kaspi-red);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .price-range {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .price-range .emoji {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .price-value {
+            color: var(--kaspi-red);
+            font-weight: 700;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, var(--kaspi-red), #FF7043);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(241, 70, 53, 0.3);
+        }
+        
+        .conclusion-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .conclusion-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .conclusion-point .icon {
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+        
+        .final-note {
+            text-align: center;
+            font-weight: 600;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px auto;
+            max-width: 1000px;
+            width: 100%;
+        }
+        
+        .nav-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--kaspi-red), #FF7043);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(241, 70, 53, 0.3);
+            text-decoration: none;
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(241, 70, 53, 0.4);
+        }
+        
+        .nav-button i {
+            margin: 0 8px;
+        }
+        
+        .back-button i {
+            margin-right: 10px;
+        }
+        
+        .next-button i {
+            margin-left: 10px;
+        }
+        
+        .link-box {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 40px auto;
+            max-width: 600px;
+            width: 100%;
+            border-top: 5px solid #0056A4;
+        }
+        
+        .zammler-title {
+            font-size: 1.8rem;
+            color: #0056A4;
+            margin-bottom: 20px;
+        }
+        
+        .zammler-description {
+            margin-bottom: 25px;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .zammler-link {
+            display: inline-block;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #0056A4, #4D96D9);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 86, 164, 0.3);
+        }
+        
+        .zammler-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 86, 164, 0.4);
+        }
+        
+        .zammler-link i {
+            margin-left: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.8rem;
+                margin: 15px 0;
+            }
+            
+            .content-container {
+                padding: 20px;
+            }
+            
+            .delivery-type {
+                padding: 20px;
+            }
+            
+            .delivery-title {
+                font-size: 1.3rem;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            .nav-button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="page-title">Kaspi доставканың 3 түрі</h1>
+    
+    <div class="content-container">
+        <div class="delivery-types">
+            <!-- <h2 class="conclusion-title"> НДС пен саналған баға </h2> -->
+            <img src="IMG_1488.PNG" alt="Kaspi доставка түрлері" class="delivery-image">
+            <!-- <h2 class="conclusion-title"> Без НДС</h2> -->
+            <img src="IMG_1489.PNG" alt="Kaspi доставка түрлері" class="delivery-image">
+            
+            <!-- <div class="delivery-type">
+                <h2 class="delivery-title"><span class="emoji">1️⃣</span> Өз күшіңізбен жеткізу (Своя доставка)</h2>
+                <p>Тауарды өзіңіз апарасыз</p>
+                
+                <div class="benefit">
+                    <span class="check"><i class="fas fa-check-circle"></i></span>
+                    <p>Егер сатып алушы сізге жақын жерде болса, тауарды өзіңіз апарып бересіз.</p>
+                </div>
+                <div class="benefit">
+                    <span class="check"><i class="fas fa-check-circle"></i></span>
+                    <p>Бұл әдіс тез және икемді, себебі жеткізуді өз кестеңізге қарай ұйымдастырасыз.</p>
+                </div>
+                <div class="benefit">
+                    <span class="check"><i class="fas fa-check-circle"></i></span>
+                    <p>Доставка день в день – тапсырысты сол күні жеткізуге болады.</p>
+                </div>
+                
+                <div class="when-useful">
+                    <h3 class="when-useful-title">🔹 Қай кезде тиімді?</h3>
+                    <div class="useful-point">
+                        <span class="check"><i class="fas fa-check"></i></span>
+                        <p>Тауарыңыз сол қалада болса</p>
+                    </div>
+                    <div class="useful-point">
+                        <span class="check"><i class="fas fa-check"></i></span>
+                        <p>Жылдам жеткізу керек болған жағдайда</p>
+                    </div>
+                    <div class="useful-point">
+                        <span class="check"><i class="fas fa-check"></i></span>
+                        <p>Курьерлік қызметке тәуелді болғыңыз келмесе</p>
+                    </div>
+                </div>
+            </div> -->
+            
+            <!-- <div class="divider"></div>
+            
+            <div class="delivery-type">
+                <h2 class="delivery-title"><span class="emoji">2️⃣</span> Қалааралық жеткізу (Kaspi замлер арқылы)</h2>
+                
+                <div class="benefit">
+                    <span class="check"><i class="fas fa-check-circle"></i></span>
+                    <p>Егер сатып алушы басқа қалада болса, Kaspi-дің арнайы пунктіне (замлер) апарып бересіз, әрі қарай Kaspi оны сатып алушының қаласына жеткізеді.</p>
+                </div>
+                <div class="benefit">
+                    <span class="check"><i class="fas fa-check-circle"></i></span>
+                    <p>Бұл сенімді және ыңғайлы, себебі Kaspi логистикамен өзі айналысады.</p>
+                </div>
+                
+                <div class="when-useful">
+                    <h3 class="when-useful-title">🔹 Қай кезде тиімді?</h3>
+                    <div class="useful-point">
+                        <span class="check"><i class="fas fa-check"></i></span>
+                        <p>Сіз басқа қалаға сату жасағыңыз келсе</p>
+                    </div>
+                    <div class="useful-point">
+                        <span class="check"><i class="fas fa-check"></i></span>
+                        <p>Тауарды өзіңіз апаруға мүмкіндігіңіз болмаса</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div class="delivery-type">
+                <h2 class="delivery-title"><span class="emoji">3️⃣</span> Kaspi экспресс-доставка (3 сағат ішінде жеткізу)</h2>
+                
+                <div class="benefit">
+                    <span class="check"><i class="fas fa-check-circle"></i></span>
+                    <p>Kaspi курьері тауарды өзіңізден алып кетеді және 3 сағат ішінде сатып алушыға жеткізеді.</p>
+                </div>
+                <div class="benefit">
+                    <span class="check"><i class="fas fa-check-circle"></i></span>
+                    <p>Бұл ең жылдам және ыңғайлы әдіс, өйткені сізге ешқайда барудың қажеті жоқ – курьер өзі келеді!</p>
+                </div>
+                <div class="benefit">
+                    <span class="check"><i class="fas fa-exclamation-circle" style="color: #F14635;"></i></span>
+                    <p>Бірақ бұл қызметті барлық сатушылар бірден қоса алмайды.</p>
+                </div>
+                <div class="benefit">
+                    <span class="check"><i class="fas fa-check-circle"></i></span>
+                    <p>Kaspi экспресс-доставканы қосу үшін, сіздің дүкеніңізде кемінде 300 тапсырыс болуы керек.</p>
+                </div>
+                
+                <div class="when-useful">
+                    <h3 class="when-useful-title">🔹 Қай кезде тиімді?</h3>
+                    <div class="useful-point">
+                        <span class="check"><i class="fas fa-check"></i></span>
+                        <p>Жылдам қызмет көрсету маңызды болса</p>
+                    </div>
+                    <div class="useful-point">
+                        <span class="check"><i class="fas fa-check"></i></span>
+                        <p>Сізде жеткізуге уақытыңыз болмаса</p>
+                    </div>
+                    <div class="useful-point">
+                        <span class="check"><i class="fas fa-check"></i></span>
+                        <p>Қосымша клиенттер тартқыңыз келсе (жылдам жеткізу – сатып алушылар үшін үлкен плюс)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div class="conclusion">
+                <h2 class="conclusion-title">Қорытынды: Қайсысы сізге тиімді?</h2>
+                
+                <div class="conclusion-point">
+                    <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <p><strong>📌 Тауарды өзіңіз апара аласыз ба?</strong> → Өз күшіңізбен жеткізу (Своя доставка)</p>
+                </div>
+                <div class="conclusion-point">
+                    <span class="icon"><i class="fas fa-city"></i></span>
+                    <p><strong>📌 Сатып алушы басқа қалада ма?</strong> → Kaspi қалааралық жеткізу (замлер арқылы)</p>
+                </div>
+                <div class="conclusion-point">
+                    <span class="icon"><i class="fas fa-shipping-fast"></i></span>
+                    <p><strong>📌 Жылдам қызмет керек пе?</strong> → Kaspi экспресс-доставка (3 сағат ішінде, бірақ 300+ сатылымнан кейін қосылады)</p>
+                </div>
+                
+                <p class="final-note">Kaspi-дегі сату – бұл тек онлайн дүкен ғана емес, сонымен қатар тиімді логистика!<br>Дұрыс жеткізу әдісін таңдап, клиенттеріңізге ең жақсы сервис ұсыныңыз!</p>
+            </div>
+        </div> -->
+        
+        <!-- <div class="pricing-section">
+            <h2 class="pricing-title">Kaspi арқылы қалааралық жеткізу қалай есептеледі?</h2>
+            
+            <img src="Jetkizy.jpg" alt="Kaspi жеткізу есептеу" class="delivery-image">
+            
+            <p>Егер сіз Kaspi арқылы басқа қалаға тауар жіберсеңіз, жеткізу құны тауардың бағасына және салмағына байланысты есептеледі.</p>
+            
+            <div class="benefit">
+                <span class="check"><i class="fas fa-check-circle"></i></span>
+                <p>Kaspi замлеріне өзіңіз тауарды апарасыз</p>
+            </div>
+            <div class="benefit">
+                <span class="check"><i class="fas fa-check-circle"></i></span>
+                <p>Kaspi логистикасы тауарды сатып алушының қаласына жеткізеді</p>
+            </div>
+            <div class="benefit">
+                <span class="check"><i class="fas fa-check-circle"></i></span>
+                <p>Құны автоматты түрде тапсырыс кезінде есептеледі</p>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <h3 style="margin-bottom: 20px; color: var(--kaspi-red);">Жеткізу құны қалай есептеледі?</h3>
+            
+            <div class="pricing-card">
+                <div class="price-range">
+                    <span class="emoji">1️⃣</span> Тауар бағасы 5000 тг-ге дейін – <span class="price-value">ЖЕТКІЗУ ТЕГІН</span>
+                </div>
+                <div class="useful-point">
+                    <span class="check"><i class="fas fa-check"></i></span>
+                    <p>Егер сіздің тауарыңыздың бағасы 5000 теңгеден аспаса, Kaspi оны тегін тасымалдайды.</p>
+                </div>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="price-range">
+                    <span class="emoji">2️⃣</span> Тауар бағасы 5000 – 15 000 тг аралығында
+                </div>
+                <div class="useful-point">
+                    <span class="check"><i class="fas fa-check"></i></span>
+                    <p>Бұл жағдайда жеткізу құны <span class="price-value">799 тг (ҚҚС-сыз)</span></p>
+                </div>
+                <div class="useful-point">
+                    <span class="check"><i class="fas fa-check"></i></span>
+                    <p>ҚҚС-пен (ЕНДС) – <span class="price-value">894 тг</span></p>
+                </div>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="price-range">
+                    <span class="emoji">3️⃣</span> Тауар бағасы 15 000 тг-ден жоғары болса
+                </div>
+                <div class="useful-point">
+                    <span class="check"><i class="fas fa-check"></i></span>
+                    <p>Бұл кезде жеткізу құны тауардың салмағына байланысты есептеледі.</p>
+                </div>
+                <div class="useful-point">
+                    <span class="check"><i class="fas fa-check"></i></span>
+                    <p>Минималды баға – <span class="price-value">894 тг-ден</span> басталады және салмақ өскен сайын көтеріледі.</p>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <h3 style="margin-bottom: 20px; color: var(--kaspi-red);">Қысқаша қорытынды:</h3>
+            
+            <div class="pricing-card" style="display: flex; justify-content: space-around; flex-wrap: wrap; text-align: center;">
+                <div style="margin: 10px;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">📦</div>
+                    <p><strong>5000 тг-ге дейін</strong></p>
+                    <p class="price-value">ТЕГІН</p>
+                </div>
+                <div style="margin: 10px;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">📦</div>
+                    <p><strong>5000 – 15 000 тг</strong></p>
+                    <p class="price-value">799 тг (894 тг ҚҚС-пен)</p>
+                </div>
+                <div style="margin: 10px;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">📦</div>
+                    <p><strong>15 000 тг+</strong></p>
+                    <p class="price-value">Салмаққа байланысты (894 тг-ден бастап)</p>
+                </div>
+            </div>
+            
+            <div class="benefit" style="margin-top: 20px;">
+                <span class="check"><i class="fas fa-check-circle"></i></span>
+                <p>Kaspi қалааралық жеткізу – сатушыларға ыңғайлы, себебі сіз тек замлерге апарасыз, ал Kaspi бәрін өзі тасымалдайды!</p>
+            </div>
+        </div> -->
+    </div>
+
+    <!-- <div class="link-box">
+        <h1 class="zammler-title">Zammler Контактілері</h1>
+        <p class="zammler-description">
+            Kaspi-дің ресми логистикалық серіктесі – Zammler компаниясы. Толық контакт ақпаратын ресми сайтынан таба аласыз.
+        </p>
+        <a href="https://zammler.com.kz/ru/contacts/" target="_blank" class="zammler-link">
+            Zammler контактілері <i class="fas fa-external-link-alt"></i>
+        </a>
+    </div> -->
+
+    <div class="navigation-buttons">
+        <a href="index.html" class="nav-button back-button">
+            <i class="fas fa-arrow-left"></i> Артқа қайту
+        </a>
+        <a href="n35.html" class="nav-button next-button">
+            Келесі сабақ <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <script>
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                // Go to previous page
+                window.location.href = 'index.html';
+            } else if (e.key === 'ArrowRight') {
+                // Go to next page
+                window.location.href = 'n35.html';
+            }
+        });
+    </script>
+</body>
+</html>
