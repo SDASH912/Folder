@@ -50,21 +50,10 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             background-color: #000;
         }
-        
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-        }
-        
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
+
+        /* keep a consistent aspect ratio for the container if you want */
+        .video-container .sp-embed-player,
+        .video-container iframe {
             border-radius: 12px;
         }
         
@@ -132,16 +121,13 @@
 <body>
     <h1 class="video-title">Нац каталог регистрация</h1>
     
-
     <div class="video-container">
-        <div class="video-wrapper">
-            <!-- YouTube embed for the video with ID uhhh i dunno, hehe. :> -->
-            <iframe width="560" height="315" src="https://go.screenpal.com/player/appearance/cOVv64n3xXW" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <!-- ScreenPal embed: inserted here. This contains the script and iframe required by ScreenPal. -->
+        <div class="sp-embed-player" data-id="cOVv64n3xXW" data-aspect-ratio="1.777778" data-padding-top="56.250000%" style="position:relative;width:100%;padding-top:56.250000%;height:0;">
+            <script src="https://go.screenpal.com/player/appearance/cOVv64n3xXW"></script>
+            <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" scrolling="no" src="https://go.screenpal.com/player/cOVv64n3xXW?ff=1&ahc=1&dcc=1&bg=transparent&share=1&download=1&embed=1&cl=1" allowfullscreen="true"></iframe>
         </div>
     </div>
-
-
-
 
     <div class="navigation-buttons">
         <a href="index.html" class="nav-button back-button">
